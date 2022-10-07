@@ -5,26 +5,57 @@
   "description": "",
   "version": "0.0.1",
   "engines": {
-    "vscode": "^1.36.0"
+    "vscode": "^1.67.0"
   },
   "categories": [
     "Other"
   ],
   "activationEvents": [
-    "onCommand:extension.startExtension"
+    "onCommand:extension.startExtension",
+    "onCommand:extension.openBox",
+    "onView:telescopeX-sidebar",
+    "onLanguage:markdown"
   ],
   "main": "./out/extension.js",
   "contributes": {
-    "commands": [
+		"viewsContainers": {
+			"activitybar": [
+				{
+					"id": "telescopeX-sidebar-view",
+					"title": "telescopeX",
+					"icon": "media/underpants.svg"
+				}
+			]
+		},
+		"views": {
+			"telescopeX-sidebar-view": [
+				{
+					"type": "webview",
+					"id": "telescopeX-sidebar",
+					"name": "TelescopeX",
+					"icon": "media/underpants.svg",
+					"contextualTitle": "telescopeX"
+				}
+			]
+		},
+		"commands": [
+			{
+				"command": "laris.helloWorld",
+				"title": "Hello World"
+			},
       {
         "command": "extension.startExtension",
-        "title": "VsCode React extension"
+        "title": "Open TelescopeX"
+      },
+      {
+        "command": "extension.openBox",
+        "title": "Open Box guidelines"
       }
-    ]
-  },
+		]
+	},
   "scripts": {
     "vscode:prepublish": "npm run compile",
-    "compile": "tsc -p ./ && copy react-app\\dist\\index.html out\\index.html",
+    "compile": "tsc -p ./ && cp react-app/dist/index.html out/index.html",
     "pretest": "npm run compile",
     "test": "node ./out/test/runTest.js"
   },
@@ -32,7 +63,7 @@
     "@types/glob": "^7.1.1",
     "@types/mocha": "^5.2.6",
     "@types/node": "^10.12.21",
-    "@types/vscode": "^1.36.0",
+    "@types/vscode": "^1.67.0",
     "glob": "^7.1.4",
     "mocha": "^6.1.4",
     "typescript": "^3.3.1",
